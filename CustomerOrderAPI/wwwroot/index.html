@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Order Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Order Management</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="orders.html">Orders</a>
+            <a href="products.html">Products</a>
+            <a href="customers.html">Customers</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Dashboard</h1>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Orders (Today)</div>
+                <div class="kpi-value" id="todayOrders">-</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Amount (Today)</div>
+                <div class="kpi-value" id="todayAmount">-</div>
+            </div>
+            <div class="kpi-card warn">
+                <div class="kpi-label">Pending Order</div>
+                <div class="kpi-value" id="pendingOrders">-</div>
+            </div>
+            <div class="kpi-card danger">
+                <div class="kpi-label">Low Stock</div>
+                <div class="kpi-value" id="lowStock">-</div>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="card">
+                <h2>Orders Status</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Low Stock List</h2>
+                <div id="lowStockList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

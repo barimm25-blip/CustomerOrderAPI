@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders - Customer Order Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Order Management</div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="orders.html" class="active">Orders</a>
+            <a href="products.html">Products</a>
+            <a href="customers.html">Customers</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Orders</h1>
+            <button class="btn btn-primary" onclick="openCreateModal()">+ Add Order</button>
+        </div>
+
+        <div class="filter-bar">
+            <select id="statusFilter" onchange="loadOrders()">
+                <option value="">Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Processing">Processing</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order No</th>
+                        <th>Customer</th>
+                        <th>Order Date</th>
+                        <th>Qty</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal สร้าง Order -->
+    <div id="createModal" class="modal" style="display:none">
+        <div class="modal-box">
+            <h2>Add new order</h2>
+            <div class="form-group">
+                <label>Customer</label>
+                <select id="customerId"></select>
+            </div>
+            <div class="form-group">
+                <label>Request Date</label>
+                <input type="date" id="requestedDate">
+            </div>
+            <div class="form-group">
+                <label>Remark</label>
+                <input type="text" id="remark" placeholder="Remark">
+            </div>
+            <h3>Order Item</h3>
+            <div id="orderItems"></div>
+            <button class="btn btn-secondary" onclick="addItem()">+ Add item</button>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="submitOrder()">Submit</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/orders.js"></script>
+</body>
+</html>
