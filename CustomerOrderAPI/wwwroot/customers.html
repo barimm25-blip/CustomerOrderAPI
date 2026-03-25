@@ -1,10 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Orders - Customer Order Management</title>
+    <title>Customers - Customer Order Management</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
     <nav class="navbar">
@@ -25,66 +24,63 @@
 
     <div class="container">
         <div class="page-header">
-            <h1 class="page-title">Orders</h1>
-            <button class="btn btn-primary" onclick="openCreateModal()">➕ Create Order</button>
-
+            <h1 class="page-title">Customers</h1>
+            <button class="btn btn-primary" onclick="openCreateModal()">➕ Add Customer</button>
         </div>
 
         <div class="filter-bar">
-            <select id="statusFilter" onchange="loadOrders()">
-                <option value="">Status</option>
-                <option value="Pending">Pending</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Processing">Processing</option>
-                <option value="Shipped">Shipped</option>
-                <option value="Completed">Completed</option>
-                <option value="Cancelled">Cancelled</option>
-            </select>
+            <input type="text" id="searchInput" placeholder="Search by name or code..."
+                   oninput="loadCustomers()" style="padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;width:280px">
         </div>
 
         <div class="card">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Order No</th>
-                        <th>Customer</th>
-                        <th>Order Date</th>
-                        <th>Qty</th>
-                        <th>Status</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Phone</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="orderTable"></tbody>
+                <tbody id="customerTable"></tbody>
             </table>
         </div>
     </div>
 
-    <!-- Modal สร้าง Order -->
+    <!-- Modal -->
     <div id="createModal" class="modal" style="display:none">
         <div class="modal-box">
-            <h2>Add new order</h2>
+            <h2 id="modalTitle">Add Customer</h2>
             <div class="form-group">
-                <label>Customer</label>
-                <select id="customerId"></select>
+                <label>Customer Code</label>
+                <input type="text" id="customerCode" placeholder="C001">
             </div>
             <div class="form-group">
-                <label>Request Date</label>
-                <input type="date" id="requestedDate">
+                <label>Customer Name</label>
+                <input type="text" id="customerName" placeholder="Company name">
             </div>
             <div class="form-group">
-                <label>Remark</label>
-                <input type="text" id="remark" placeholder="Remark">
+                <label>Contact Name</label>
+                <input type="text" id="contactName" placeholder="Contact person">
             </div>
-            <h3>Order Item</h3>
-            <div id="orderItems"></div>
-            <button class="btn btn-secondary" onclick="addItem()">+ Add item</button>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="text" id="phone" placeholder="02-xxx-xxxx">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="email@company.com">
+            </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick="submitOrder()">Submit</button>
+                <button class="btn btn-primary" onclick="submitCustomer()">Save</button>
                 <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
             </div>
         </div>
     </div>
 
-    <script src="js/orders.js"></script>
+    <script src="js/customers.js"></script>
 </body>
 </html>

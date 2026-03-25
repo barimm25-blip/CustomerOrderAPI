@@ -23,7 +23,7 @@ async function loadDashboard() {
     const lowStock = await fetch(`${API}/dashboard/low-stock`).then(r => r.json());
     const list = document.getElementById('lowStockList');
     if (lowStock.length === 0) {
-        list.innerHTML = '<p style="color:#888;font-size:14px">ไม่มีสินค้าใกล้หมด</p>';
+        list.innerHTML = '<p style="color:#888;font-size:14px">No items are running low</p>';
     } else {
         list.innerHTML = lowStock.map(p => `
             <div class="low-stock-item">

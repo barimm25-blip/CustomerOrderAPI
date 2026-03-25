@@ -10,5 +10,7 @@
         public int StockQty { get; set; }
         public int MinStockQty { get; set; }
         public bool IsActive { get; set; } = true;
+
+        public string? ImageUrl { get; set; }
     }
 }

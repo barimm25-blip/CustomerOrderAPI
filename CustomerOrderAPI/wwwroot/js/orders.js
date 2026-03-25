@@ -1,6 +1,15 @@
 ﻿const API = 'http://localhost:5237/api';
 let products = [];
 
+const statusEmoji = {
+    'Pending': '⏳ Pending',
+    'Confirmed': '✅ Confirmed',
+    'Processing': '⚙️ Processing',
+    'Shipped': '🚚 Shipped',
+    'Completed': '🎉 Completed',
+    'Cancelled': '❌ Cancelled'
+};
+
 async function loadOrders() {
     const status = document.getElementById('statusFilter').value;
     const url = status ? `${API}/orders?status=${status}` : `${API}/orders`;
@@ -12,7 +21,7 @@ async function loadOrders() {
             <td>${o.customerName}</td>
             <td>${new Date(o.orderDate).toLocaleDateString('th-TH')}</td>
             <td>${o.totalAmount.toLocaleString('th-TH')} ฿</td>
-            <td><span class="badge badge-${o.status.toLowerCase()}">${o.status}</span></td>
+            <td><span class="badge badge-${o.status.toLowerCase()}">${statusEmoji[o.status] ?? o.status}</span></td>
             <td>
                 ${o.status === 'Pending' ? `<button class="btn btn-warning" onclick="updateStatus(${o.orderId}, 'Confirmed')">Confirm</button>` : ''}
                 ${o.status === 'Pending' ? `<button class="btn btn-danger" onclick="cancelOrder(${o.orderId})">Cancel</button>` : ''}
@@ -37,8 +46,8 @@ function addItem() {
     div.className = 'item-row';
     div.innerHTML = `
         <select class="product-select">${products.map(p => `<option value="${p.productId}">${p.productName} (${p.stockQty})</option>`).join('')}</select>
-        <input type="number" class="qty-input" value="1" min="1" placeholder="จำนวน">
-        <button class="btn btn-danger" onclick="this.parentElement.remove()">ลบ</button>
+        <input type="number" class="qty-input" value="1" min="1" placeholder="Quantity">
+        <button class="btn btn-danger" onclick="this.parentElement.remove()">Del</button>
     `;
     document.getElementById('orderItems').appendChild(div);
 }
@@ -62,7 +71,7 @@ async function submitOrder() {
     if (res.ok) {
         closeModal();
         loadOrders();
-        alert('สร้าง Order สำเร็จ!');
+        alert('Order added successfully!');
     } else {
         const err = await res.json();
         alert('Error: ' + err.message);
@@ -79,7 +88,7 @@ async function updateStatus(id, newStatus) {
 }
 
 async function cancelOrder(id) {
-    if (!confirm('ยืนยันการยกเลิก Order?')) return;
+    if (!confirm('Cancel this order?')) return;
     await fetch(`${API}/orders/${id}`, { method: 'DELETE' });
     loadOrders();
 }

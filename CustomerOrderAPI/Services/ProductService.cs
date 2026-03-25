@@ -22,7 +22,8 @@ namespace CustomerOrderAPI.Services
                     Unit = p.Unit,
                     UnitPrice = p.UnitPrice,
                     StockQty = p.StockQty,
-                    MinStockQty = p.MinStockQty
+                    MinStockQty = p.MinStockQty,
+                    ImageUrl = p.ImageUrl
                 }).ToListAsync();
         }
 
@@ -51,7 +52,8 @@ namespace CustomerOrderAPI.Services
                 Unit = dto.Unit,
                 UnitPrice = dto.UnitPrice,
                 StockQty = dto.StockQty,
-                MinStockQty = dto.MinStockQty
+                MinStockQty = dto.MinStockQty,
+                ImageUrl = dto.ImageUrl
             };
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
@@ -68,6 +70,7 @@ namespace CustomerOrderAPI.Services
             product.UnitPrice = dto.UnitPrice;
             product.StockQty = dto.StockQty;
             product.MinStockQty = dto.MinStockQty;
+            product.ImageUrl = dto.ImageUrl;
             await _context.SaveChangesAsync();
             return true;
         }

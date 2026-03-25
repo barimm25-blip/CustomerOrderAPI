@@ -9,12 +9,18 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-brand">Order Management</div>
+        <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <div style="width:36px; height:36px; background:#3498db; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">📦</div>
+            <div style="display:flex; flex-direction:column; line-height:1.2;">
+                <span style="color:white; font-size:16px; font-weight:700; letter-spacing:0.5px;">ORDER MANAGEMENT</span>
+                <span style="color:#3498db; font-size:9px; letter-spacing:2px;">OrderFlow</span>
+            </div>
+        </a>
         <div class="nav-links">
-            <a href="index.html" class="active">Dashboard</a>
-            <a href="orders.html">Orders</a>
-            <a href="products.html">Products</a>
-            <a href="customers.html">Customers</a>
+            <a href="index.html" class="active">📊 Dashboard</a>
+            <a href="orders.html">📋 Orders</a>
+            <a href="products.html">📦 Products</a>
+            <a href="customers.html">👥 Customers</a>
         </div>
     </nav>
 
@@ -23,19 +29,19 @@
 
         <div class="kpi-grid">
             <div class="kpi-card">
-                <div class="kpi-label">Orders (Today)</div>
+                <div class="kpi-label">📅 Orders Today</div>
                 <div class="kpi-value" id="todayOrders">-</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label">Amount (Today)</div>
+                <div class="kpi-label">💰 Amount Today</div>
                 <div class="kpi-value" id="todayAmount">-</div>
             </div>
             <div class="kpi-card warn">
-                <div class="kpi-label">Pending Order</div>
+                <div class="kpi-label">⏳ Pending</div>
                 <div class="kpi-value" id="pendingOrders">-</div>
             </div>
             <div class="kpi-card danger">
-                <div class="kpi-label">Low Stock</div>
+                <div class="kpi-label">⚠️ Low Stock</div>
                 <div class="kpi-value" id="lowStock">-</div>
             </div>
         </div>

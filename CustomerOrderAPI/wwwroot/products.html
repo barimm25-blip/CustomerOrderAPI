@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products - Customer Order Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+            <div style="width:36px; height:36px; background:#3498db; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">📦</div>
+            <div style="display:flex; flex-direction:column; line-height:1.2;">
+                <span style="color:white; font-size:16px; font-weight:700; letter-spacing:0.5px;">ORDER MANAGEMENT</span>
+                <span style="color:#3498db; font-size:9px; letter-spacing:2px;">OrderFlow</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">📊 Dashboard</a>
+            <a href="orders.html" class="active">📋 Orders</a>
+            <a href="products.html">📦 Products</a>
+            <a href="customers.html">👥 Customers</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Products</h1>
+            <button class="btn btn-primary" onclick="openCreateModal()">➕ Add Product</button>
+        </div>
+
+        <div class="card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Unit</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Min Stock</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="createModal" class="modal" style="display:none">
+        <div class="modal-box">
+            <h2 id="modalTitle">Add Product</h2>
+            <div class="form-group">
+                <label>Product Code</label>
+                <input type="text" id="productCode" placeholder="P001">
+            </div>
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" id="productName" placeholder="Product name">
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
+            </div>
+            <div id="imagePreview" style="margin-top:8px; display:none;">
+                <img id="previewImg" src="" style="width:100%; max-height:160px; object-fit:contain; border-radius:8px; border:1px solid #ddd;">
+            </div>
+
+            <div class="form-group">
+                <label>Unit</label>
+                <input type="text" id="unit" placeholder="pcs / kg / box">
+            </div>
+            <div class="form-group">
+                <label>Unit Price</label>
+                <input type="number" id="unitPrice" placeholder="0.00" min="0">
+            </div>
+            <div class="form-group">
+                <label>Stock Qty</label>
+                <input type="number" id="stockQty" placeholder="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Min Stock Qty</label>
+                <input type="number" id="minStockQty" placeholder="0" min="0">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="submitProduct()">Save</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script>
+        document.getElementById('imageUrl').addEventListener('input', function () {
+            const preview = document.getElementById('imagePreview');
+            const img = document.getElementById('previewImg');
+            if (this.value) {
+                img.src = this.value;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('imageUrl').value = p.imageUrl ?? '';
+        const preview = document.getElementById('imagePreview');
+        const img = document.getElementById('previewImg');
+        if (p.imageUrl) {
+            img.src = p.imageUrl;
+            preview.style.display = 'block';
+        } else {
+            preview.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

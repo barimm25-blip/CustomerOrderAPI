@@ -71,8 +71,7 @@ namespace CustomerOrderAPI.Services
         }
 
         public async Task<OrderDto> CreateAsync(CreateOrderDto dto)
-        {
-            // สร้าง OrderNo อัตโนมัติ
+        {           
             var orderNo = $"ORD{DateTime.Now:yyyyMMddHHmmss}";
             var order = new Order
             {
@@ -102,7 +101,7 @@ namespace CustomerOrderAPI.Services
                     Amount = amount
                 });
 
-                // หักสต็อก
+                
                 product.StockQty -= item.Qty;
             }
 
@@ -117,13 +116,13 @@ namespace CustomerOrderAPI.Services
             var order = await _context.Orders.FindAsync(id);
             if (order == null) return false;
 
-            // Business logic: ห้ามย้อนสถานะ
+            // Business logic:  
             var flow = new[] { "Pending", "Confirmed", "Processing", "Shipped", "Completed" };
             var currentIndex = Array.IndexOf(flow, order.Status);
             var newIndex = Array.IndexOf(flow, dto.NewStatus);
             if (newIndex <= currentIndex) throw new Exception("Cannot move to previous status");
 
-            // บันทึก log
+            // log
             _context.OrderStatusLogs.Add(new OrderStatusLog
             {
                 OrderId = id,
@@ -147,7 +146,7 @@ namespace CustomerOrderAPI.Services
             if (order.Status != "Pending" && order.Status != "Confirmed")
                 throw new Exception("Can only cancel Pending or Confirmed orders");
 
-            // คืนสต็อก
+            
             foreach (var item in order.OrderItems)
             {
                 var product = await _context.Products.FindAsync(item.ProductId);

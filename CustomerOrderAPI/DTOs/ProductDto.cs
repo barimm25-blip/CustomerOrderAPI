@@ -9,6 +9,7 @@
         public decimal UnitPrice { get; set; }
         public int StockQty { get; set; }
         public int MinStockQty { get; set; }
+        public string? ImageUrl { get; set; }
     }
 
     public class CreateProductDto
@@ -19,5 +20,6 @@
         public decimal UnitPrice { get; set; }
         public int StockQty { get; set; }
         public int MinStockQty { get; set; }
+        public string? ImageUrl { get; set; }
     }
 }
